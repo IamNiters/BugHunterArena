@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-950 text-gray-100 font-sans antialiased;
+  }
+  * {
+    @apply box-border;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-indigo-500 hover:bg-indigo-600 text-white shadow-lg;
+  }
+  .btn-danger {
+    @apply btn bg-rose-500 hover:bg-red-600 text-white shadow-lg;
+  }
+  .btn-success {
+    @apply btn bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent border border-gray-600 hover:bg-gray-800 text-gray-300;
+  }
+  .card {
+    @apply bg-gray-900 border border-gray-800 rounded-xl p-4 shadow-xl;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-js { @apply badge bg-yellow-500/20 text-yellow-400 border border-yellow-500/30; }
+  .badge-php { @apply badge bg-purple-500/20 text-purple-400 border border-purple-500/30; }
+  .badge-cpp { @apply badge bg-blue-500/20 text-blue-400 border border-blue-500/30; }
+  .badge-csharp { @apply badge bg-green-500/20 text-green-400 border border-green-500/30; }
+  .badge-mobile { @apply badge bg-pink-500/20 text-pink-400 border border-pink-500/30; }
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #111827; }
+::-webkit-scrollbar-thumb { background: #374151; border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+@keyframes scoreUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-40px); opacity: 0; }
+}
+.score-up { animation: scoreUp 1.5s ease-out forwards; }

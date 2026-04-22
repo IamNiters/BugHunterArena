@@ -1,0 +1,13 @@
+{
+  "name": "bug-hunter-arena",
+  "version": "1.0.0",
+  "description": "Jeu compétitif de résolution de bugs - TPRE300",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "install:all": "cd server && npm install && cd ../client && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
