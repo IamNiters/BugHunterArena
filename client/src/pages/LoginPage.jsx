@@ -4,24 +4,24 @@ import { authAPI, teamsAPI } from '../services/api';
 import { useAuthStore } from '../store/gameStore';
 
 const ROLES = [
-  { id: 'admin', label: 'Administrateur', icon: '🛡️', desc: 'Gérer la session de jeu' },
-  { id: 'team', label: 'Équipe', icon: '👥', desc: 'Vue équipe et scores' },
-  { id: 'player', label: 'Joueur', icon: '💻', desc: 'Répondre aux questions' },
-  { id: 'spectator', label: 'Spectateur', icon: '👁️', desc: 'Suivre en direct' },
+  { id: 'admin',     label: 'Administrateur', icon: '🛡️', desc: 'Gérer la session de jeu' },
+  { id: 'team',      label: 'Équipe',          icon: '👥', desc: 'Vue équipe et scores' },
+  { id: 'player',    label: 'Joueur',           icon: '💻', desc: 'Répondre aux questions' },
+  { id: 'spectator', label: 'Spectateur',       icon: '👁️', desc: 'Suivre en direct' },
 ];
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const setAuth = useAuthStore((s) => s.setAuth);
 
-  const [role, setRole] = useState(null);
-  const [password, setPassword] = useState('');
-  const [teamName, setTeamName] = useState('');
-  const [playerName, setPlayerName] = useState('');
-  const [teams, setTeams] = useState([]);
+  const [role, setRole]               = useState(null);
+  const [password, setPassword]       = useState('');
+  const [teamName, setTeamName]       = useState('');
+  const [playerName, setPlayerName]   = useState('');
+  const [teams, setTeams]             = useState([]);
   const [selectedTeam, setSelectedTeam] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [loading, setLoading]         = useState(false);
+  const [error, setError]             = useState('');
 
   const handleRoleSelect = async (r) => {
     setRole(r);
@@ -67,6 +67,7 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-gray-950 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
+
         {/* Logo */}
         <div className="text-center mb-8">
           <div className="text-6xl mb-3">🐛</div>
@@ -74,22 +75,55 @@ export default function LoginPage() {
           <p className="text-gray-400 mt-1">Chasse les bugs, domine le classement</p>
         </div>
 
-        {/* Sélection du rôle */}
+        {/* Sélection du mode / rôle */}
         {!role && (
-          <div className="card">
-            <h2 className="text-lg font-semibold text-gray-200 mb-4">Qui êtes-vous ?</h2>
-            <div className="grid grid-cols-2 gap-3">
-              {ROLES.map((r) => (
-                <button
-                  key={r.id}
-                  onClick={() => handleRoleSelect(r.id)}
-                  className="p-4 rounded-xl border border-gray-700 hover:border-indigo-500 hover:bg-indigo-500/10 transition-all text-left group"
-                >
-                  <div className="text-2xl mb-1">{r.icon}</div>
-                  <div className="font-semibold text-gray-200 group-hover:text-white">{r.label}</div>
-                  <div className="text-xs text-gray-500 mt-0.5">{r.desc}</div>
-                </button>
-              ))}
+          <div className="space-y-4">
+
+            {/* Mode Solo — mis en avant */}
+            <div className="card border-indigo-500/40 bg-indigo-500/5">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <span className="text-3xl">🎮</span>
+                  <div>
+                    <h2 className="text-base font-bold text-white">Mode Solo</h2>
+                    <p className="text-xs text-gray-400">Joue seul à ton rythme, configure tes manches</p>
+                  </div>
+                </div>
+                <span className="badge bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 text-xs">
+                  Nouveau
+                </span>
+              </div>
+              <button
+                onClick={() => navigate('/solo/setup')}
+                className="btn-primary w-full py-2.5"
+              >
+                🚀 Jouer en solo
+              </button>
+            </div>
+
+            {/* Séparateur */}
+            <div className="flex items-center gap-3">
+              <div className="flex-1 h-px bg-gray-800" />
+              <span className="text-xs text-gray-600">ou rejoindre une session multijoueur</span>
+              <div className="flex-1 h-px bg-gray-800" />
+            </div>
+
+            {/* Rôles multijoueur */}
+            <div className="card">
+              <h2 className="text-sm font-semibold text-gray-400 mb-3">Mode Multijoueur</h2>
+              <div className="grid grid-cols-2 gap-3">
+                {ROLES.map((r) => (
+                  <button
+                    key={r.id}
+                    onClick={() => handleRoleSelect(r.id)}
+                    className="p-4 rounded-xl border border-gray-700 hover:border-indigo-500 hover:bg-indigo-500/10 transition-all text-left group"
+                  >
+                    <div className="text-2xl mb-1">{r.icon}</div>
+                    <div className="font-semibold text-gray-200 group-hover:text-white text-sm">{r.label}</div>
+                    <div className="text-xs text-gray-500 mt-0.5">{r.desc}</div>
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -163,6 +197,7 @@ export default function LoginPage() {
             </button>
           </div>
         )}
+
       </div>
     </div>
   );

@@ -69,4 +69,15 @@ export const submissionsAPI = {
   submitCode: (roundId, code) => api.post('/submissions/code', { roundId, code }),
 };
 
+// Solo
+export const soloAPI = {
+  createSession: (config) => api.post('/solo/session', config),
+  getSession: (id) => api.get(`/solo/session/${id}`),
+  nextRound: (id) => api.post(`/solo/session/${id}/next`),
+  submitMCQ: (id, roundNumber, answer) => api.post(`/solo/session/${id}/submit/mcq`, { roundNumber, answer }),
+  submitCode: (id, roundNumber, code) => api.post(`/solo/session/${id}/submit/code`, { roundNumber, code }),
+  finish: (id) => api.post(`/solo/session/${id}/finish`),
+};
+
 export default api;
+
