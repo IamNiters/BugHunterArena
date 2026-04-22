@@ -1,0 +1,603 @@
+{
+  "teams": [
+    {
+      "id": "cabca07b-af31-47b7-a741-7631ad0e8341",
+      "name": "Team Alpha",
+      "color": "#6366f1",
+      "score": 0,
+      "created_at": "2026-04-22T09:05:26.280Z"
+    },
+    {
+      "id": "da75da4b-0c2b-4f87-9392-aeb4e2828e89",
+      "name": "Team Beta",
+      "color": "#f43f5e",
+      "score": 0,
+      "created_at": "2026-04-22T09:05:26.287Z"
+    },
+    {
+      "id": "d3d402c4-6bfd-4291-abc9-8180693f0ef1",
+      "name": "Team Gamma",
+      "color": "#10b981",
+      "score": 0,
+      "created_at": "2026-04-22T09:05:26.295Z"
+    }
+  ],
+  "players": [
+    {
+      "id": "c35206a6-0f47-4a61-b9f0-239a4fe8c733",
+      "team_id": "cabca07b-af31-47b7-a741-7631ad0e8341",
+      "name": "Alice",
+      "technology": "javascript",
+      "created_at": "2026-04-22T09:05:26.282Z"
+    },
+    {
+      "id": "9104f103-5b94-4ff7-bb4e-1c130c74645f",
+      "team_id": "cabca07b-af31-47b7-a741-7631ad0e8341",
+      "name": "Bob",
+      "technology": "php",
+      "created_at": "2026-04-22T09:05:26.283Z"
+    },
+    {
+      "id": "4dd06568-f17b-4e87-9b79-b2fd69ae2ce3",
+      "team_id": "cabca07b-af31-47b7-a741-7631ad0e8341",
+      "name": "Charlie",
+      "technology": "cpp",
+      "created_at": "2026-04-22T09:05:26.284Z"
+    },
+    {
+      "id": "c0b45045-cce1-4111-a88d-f274ba57bb0d",
+      "team_id": "cabca07b-af31-47b7-a741-7631ad0e8341",
+      "name": "Diana",
+      "technology": "csharp",
+      "created_at": "2026-04-22T09:05:26.285Z"
+    },
+    {
+      "id": "8be3fcd5-d5bb-4570-8e0b-3ea3f35b9b1c",
+      "team_id": "cabca07b-af31-47b7-a741-7631ad0e8341",
+      "name": "Eve",
+      "technology": "mobile",
+      "created_at": "2026-04-22T09:05:26.286Z"
+    },
+    {
+      "id": "bb273c4b-4866-4212-b823-e6a7dc574b01",
+      "team_id": "da75da4b-0c2b-4f87-9392-aeb4e2828e89",
+      "name": "Frank",
+      "technology": "javascript",
+      "created_at": "2026-04-22T09:05:26.289Z"
+    },
+    {
+      "id": "d4bab035-16a6-48e0-a7ca-062af63655d9",
+      "team_id": "da75da4b-0c2b-4f87-9392-aeb4e2828e89",
+      "name": "Grace",
+      "technology": "php",
+      "created_at": "2026-04-22T09:05:26.290Z"
+    },
+    {
+      "id": "8418e872-fc27-4dd1-a2e5-7c7ba3403c9d",
+      "team_id": "da75da4b-0c2b-4f87-9392-aeb4e2828e89",
+      "name": "Henry",
+      "technology": "cpp",
+      "created_at": "2026-04-22T09:05:26.292Z"
+    },
+    {
+      "id": "cc5e726c-e302-4b51-876f-5e8d5c2b91c1",
+      "team_id": "da75da4b-0c2b-4f87-9392-aeb4e2828e89",
+      "name": "Iris",
+      "technology": "csharp",
+      "created_at": "2026-04-22T09:05:26.293Z"
+    },
+    {
+      "id": "0ef24b6d-4b13-45f6-a21b-fc3bcd7efc89",
+      "team_id": "da75da4b-0c2b-4f87-9392-aeb4e2828e89",
+      "name": "Jack",
+      "technology": "mobile",
+      "created_at": "2026-04-22T09:05:26.294Z"
+    },
+    {
+      "id": "f24bb849-e3f8-4a68-b0f0-6cf7a495eecd",
+      "team_id": "d3d402c4-6bfd-4291-abc9-8180693f0ef1",
+      "name": "Kate",
+      "technology": "javascript",
+      "created_at": "2026-04-22T09:05:26.296Z"
+    },
+    {
+      "id": "d77c5b98-67fb-47b3-a8a1-0737e8a474c1",
+      "team_id": "d3d402c4-6bfd-4291-abc9-8180693f0ef1",
+      "name": "Liam",
+      "technology": "php",
+      "created_at": "2026-04-22T09:05:26.297Z"
+    },
+    {
+      "id": "c6602dc6-656b-44e2-9e42-191f0aaf2bcf",
+      "team_id": "d3d402c4-6bfd-4291-abc9-8180693f0ef1",
+      "name": "Mia",
+      "technology": "cpp",
+      "created_at": "2026-04-22T09:05:26.298Z"
+    },
+    {
+      "id": "a29f8f45-7368-4aaf-b429-8692d67ab718",
+      "team_id": "d3d402c4-6bfd-4291-abc9-8180693f0ef1",
+      "name": "Noah",
+      "technology": "csharp",
+      "created_at": "2026-04-22T09:05:26.299Z"
+    },
+    {
+      "id": "d495245d-aac1-4202-a264-065632dc2af5",
+      "team_id": "d3d402c4-6bfd-4291-abc9-8180693f0ef1",
+      "name": "Olivia",
+      "technology": "mobile",
+      "created_at": "2026-04-22T09:05:26.300Z"
+    }
+  ],
+  "game_sessions": [],
+  "rounds": [],
+  "mcq_questions": [
+    {
+      "id": "5431f0be-4872-4e2b-9c36-a16f8b32beef",
+      "technology": "javascript",
+      "difficulty": 1,
+      "title": "Quel est le résultat de typeof null ?",
+      "description": "En JavaScript, quel type retourne `typeof null` ?",
+      "options": "[\"\\\"null\\\"\",\"\\\"undefined\\\"\",\"\\\"object\\\"\",\"\\\"boolean\\\"\"]",
+      "correct_answer": 2,
+      "explanation": "C'est un bug historique de JavaScript : `typeof null` retourne `\"object\"` depuis la première version du langage.",
+      "points": 100,
+      "created_at": "2026-04-22T09:05:26.301Z"
+    },
+    {
+      "id": "3b2b2989-04b2-4729-bf61-f2e88b05a43c",
+      "technology": "javascript",
+      "difficulty": 1,
+      "title": "Différence entre == et ===",
+      "description": "Que retourne `\"5\" == 5` en JavaScript ?",
+      "options": "[\"false\",\"true\",\"undefined\",\"TypeError\"]",
+      "correct_answer": 1,
+      "explanation": "`==` effectue une coercition de type. `\"5\"` est converti en `5` avant la comparaison, donc le résultat est `true`. Avec `===`, ce serait `false`.",
+      "points": 100,
+      "created_at": "2026-04-22T09:05:26.302Z"
+    },
+    {
+      "id": "d0b0c4cd-a9e0-413a-8c25-3c8ee2babdfd",
+      "technology": "javascript",
+      "difficulty": 2,
+      "title": "Closure et boucle for",
+      "description": "Que va afficher ce code ?\n```js\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}\n```",
+      "options": "[\"0, 1, 2\",\"3, 3, 3\",\"0, 0, 0\",\"undefined, undefined, undefined\"]",
+      "correct_answer": 1,
+      "explanation": "Avec `var`, `i` est partagé par toutes les closures. Quand les callbacks s'exécutent, la boucle est terminée et `i` vaut 3.",
+      "points": 150,
+      "created_at": "2026-04-22T09:05:26.303Z"
+    },
+    {
+      "id": "b551f9bf-3c6c-4abb-a0e8-5d8997defe9b",
+      "technology": "javascript",
+      "difficulty": 2,
+      "title": "Promise.all vs Promise.race",
+      "description": "Quelle méthode retourne la première Promise résolue ou rejetée ?",
+      "options": "[\"Promise.all\",\"Promise.allSettled\",\"Promise.race\",\"Promise.any\"]",
+      "correct_answer": 2,
+      "explanation": "`Promise.race` retourne une Promise qui se résout ou se rejette dès que la première des Promises passées se résout ou se rejette.",
+      "points": 150,
+      "created_at": "2026-04-22T09:05:26.305Z"
+    },
+    {
+      "id": "41598a96-8bf1-46ba-8e33-a3ad7de5787f",
+      "technology": "javascript",
+      "difficulty": 3,
+      "title": "Event Loop - Microtask vs Macrotask",
+      "description": "Dans quel ordre s'affichent les logs ?\n```js\nconsole.log(\"1\");\nsetTimeout(() => console.log(\"2\"), 0);\nPromise.resolve().then(() => console.log(\"3\"));\nconsole.log(\"4\");\n```",
+      "options": "[\"1, 2, 3, 4\",\"1, 4, 2, 3\",\"1, 4, 3, 2\",\"1, 3, 4, 2\"]",
+      "correct_answer": 2,
+      "explanation": "L'ordre est : synchrone (1, 4), puis microtasks/Promises (3), puis macrotasks/setTimeout (2).",
+      "points": 200,
+      "created_at": "2026-04-22T09:05:26.307Z"
+    },
+    {
+      "id": "4d44f365-c6a3-44cb-92a5-48c481785e7e",
+      "technology": "php",
+      "difficulty": 1,
+      "title": "Opérateur de comparaison PHP",
+      "description": "Que retourne `var_dump(0 == \"foo\")` en PHP 7 ?",
+      "options": "[\"bool(true)\",\"bool(false)\",\"int(0)\",\"NULL\"]",
+      "correct_answer": 0,
+      "explanation": "En PHP 7 et antérieur, comparer un entier à une chaîne non numérique convertit la chaîne en 0.",
+      "points": 100,
+      "created_at": "2026-04-22T09:05:26.310Z"
+    },
+    {
+      "id": "b850eb68-de21-4ec6-adf1-c57682766e22",
+      "technology": "php",
+      "difficulty": 2,
+      "title": "Différence entre include et require",
+      "description": "Quelle est la différence principale entre `include` et `require` en PHP ?",
+      "options": "[\"include est plus rapide que require\",\"require génère une erreur fatale si le fichier est introuvable, include génère un warning\",\"include ne peut être utilisé qu'une fois, require peut être répété\",\"Il n'y a aucune différence\"]",
+      "correct_answer": 1,
+      "explanation": "`require` produit une erreur fatale (E_COMPILE_ERROR) et arrête le script si le fichier est introuvable.",
+      "points": 150,
+      "created_at": "2026-04-22T09:05:26.311Z"
+    },
+    {
+      "id": "2e9e855c-95ba-42da-996a-884a739926f8",
+      "technology": "cpp",
+      "difficulty": 1,
+      "title": "Pointeurs et références",
+      "description": "Quelle est la différence entre un pointeur et une référence en C++ ?",
+      "options": "[\"Un pointeur peut être null, une référence ne peut pas\",\"Une référence peut être réassignée, un pointeur non\",\"Les pointeurs sont plus rapides que les références\",\"Il n'y a aucune différence en pratique\"]",
+      "correct_answer": 0,
+      "explanation": "Un pointeur peut être `nullptr` et peut être réassigné. Une référence doit être initialisée à la déclaration.",
+      "points": 100,
+      "created_at": "2026-04-22T09:05:26.312Z"
+    },
+    {
+      "id": "7f247cf3-405b-4a81-a013-3a23816430d0",
+      "technology": "cpp",
+      "difficulty": 2,
+      "title": "RAII et gestion mémoire",
+      "description": "Que signifie RAII en C++ ?",
+      "options": "[\"Random Access Iterator Interface\",\"Resource Acquisition Is Initialization\",\"Runtime Array Index Inspection\",\"Recursive Allocation and Initialization\"]",
+      "correct_answer": 1,
+      "explanation": "RAII (Resource Acquisition Is Initialization) est un idiome C++ où l'acquisition d'une ressource est liée à l'initialisation d'un objet.",
+      "points": 150,
+      "created_at": "2026-04-22T09:05:26.313Z"
+    },
+    {
+      "id": "4270805a-2154-473b-81ef-4a0d0dbbe3d5",
+      "technology": "csharp",
+      "difficulty": 1,
+      "title": "Value types vs Reference types",
+      "description": "Lequel de ces types est un value type en C# ?",
+      "options": "[\"string\",\"class\",\"struct\",\"interface\"]",
+      "correct_answer": 2,
+      "explanation": "En C#, `struct` est un value type (stocké sur la pile). `string`, `class` et `interface` sont des reference types.",
+      "points": 100,
+      "created_at": "2026-04-22T09:05:26.314Z"
+    },
+    {
+      "id": "a7e61319-e71e-4d28-9d54-58158268467e",
+      "technology": "csharp",
+      "difficulty": 2,
+      "title": "async/await en C#",
+      "description": "Que retourne une méthode `async` qui ne retourne rien explicitement ?",
+      "options": "[\"void\",\"Task\",\"Task<void>\",\"null\"]",
+      "correct_answer": 1,
+      "explanation": "Une méthode `async` sans valeur de retour doit retourner `Task` (et non `void`, sauf pour les event handlers).",
+      "points": 150,
+      "created_at": "2026-04-22T09:05:26.316Z"
+    },
+    {
+      "id": "913363ca-90f5-4060-87a1-5e7ca3bcad18",
+      "technology": "mobile",
+      "difficulty": 1,
+      "title": "React Native - useState",
+      "description": "Comment mettre à jour correctement un état tableau dans React Native ?",
+      "options": "[\"state.push(newItem)\",\"setState(state.push(newItem))\",\"setState([...state, newItem])\",\"setState(state + newItem)\"]",
+      "correct_answer": 2,
+      "explanation": "En React (et React Native), il ne faut jamais muter l'état directement. On crée un nouveau tableau avec le spread operator.",
+      "points": 100,
+      "created_at": "2026-04-22T09:05:26.317Z"
+    }
+  ],
+  "code_questions": [
+    {
+      "id": "82a32a6b-d7a0-4856-8ff2-7b9b2b893328",
+      "technology": "javascript",
+      "difficulty": 1,
+      "title": "Inverser une chaîne de caractères",
+      "description": "## Défi : Inverser une chaîne\n\nÉcrivez une fonction `reverseString(str)` qui prend une chaîne de caractères en paramètre et retourne cette chaîne inversée.\n\n**Exemples :**\n- `reverseString(\"hello\")` → `\"olleh\"`\n- `reverseString(\"JavaScript\")` → `\"tpircSavaJ\"`\n- `reverseString(\"\")` → `\"\"`",
+      "starter_code": "/**\n * Inverse une chaîne de caractères\n * @param {string} str - La chaîne à inverser\n * @returns {string} La chaîne inversée\n */\nfunction reverseString(str) {\n  // Votre code ici\n  \n}",
+      "solution_code": "function reverseString(str) {\n  return str.split('').reverse().join('');\n}",
+      "test_suite": "[{\"name\":\"Inverser \\\"hello\\\"\",\"call\":\"reverseString(\\\"hello\\\")\",\"expected\":\"olleh\"},{\"name\":\"Inverser \\\"JavaScript\\\"\",\"call\":\"reverseString(\\\"JavaScript\\\")\",\"expected\":\"tpircSavaJ\"},{\"name\":\"Chaîne vide\",\"call\":\"reverseString(\\\"\\\")\",\"expected\":\"\"},{\"name\":\"Un seul caractère\",\"call\":\"reverseString(\\\"a\\\")\",\"expected\":\"a\"},{\"name\":\"Palindrome\",\"call\":\"reverseString(\\\"racecar\\\")\",\"expected\":\"racecar\"}]",
+      "hints": "[\"Pensez à convertir la chaîne en tableau\",\"La méthode .reverse() fonctionne sur les tableaux\",\"Vous pouvez aussi utiliser une boucle for\"]",
+      "points": 200,
+      "time_limit_seconds": 180,
+      "created_at": "2026-04-22T09:05:26.319Z"
+    },
+    {
+      "id": "99be52c7-1be3-44d5-a1ca-c50c44cacd26",
+      "technology": "javascript",
+      "difficulty": 2,
+      "title": "FizzBuzz",
+      "description": "## Défi : FizzBuzz\n\nÉcrivez une fonction `fizzBuzz(n)` qui retourne un tableau de 1 à n où :\n- Les multiples de 3 sont remplacés par `\"Fizz\"`\n- Les multiples de 5 sont remplacés par `\"Buzz\"`\n- Les multiples de 3 ET 5 sont remplacés par `\"FizzBuzz\"`\n- Les autres nombres restent tels quels",
+      "starter_code": "/**\n * Génère le tableau FizzBuzz jusqu'à n\n * @param {number} n - La limite supérieure\n * @returns {Array} Le tableau FizzBuzz\n */\nfunction fizzBuzz(n) {\n  // Votre code ici\n  \n}",
+      "solution_code": "function fizzBuzz(n) {\n  return Array.from({ length: n }, (_, i) => {\n    const num = i + 1;\n    if (num % 15 === 0) return 'FizzBuzz';\n    if (num % 3 === 0) return 'Fizz';\n    if (num % 5 === 0) return 'Buzz';\n    return num;\n  });\n}",
+      "test_suite": "[{\"name\":\"Multiple de 3 → Fizz\",\"call\":\"fizzBuzz(3)[2]\",\"expected\":\"Fizz\"},{\"name\":\"Multiple de 5 → Buzz\",\"call\":\"fizzBuzz(5)[4]\",\"expected\":\"Buzz\"},{\"name\":\"Multiple de 15 → FizzBuzz\",\"call\":\"fizzBuzz(15)[14]\",\"expected\":\"FizzBuzz\"},{\"name\":\"Nombre normal\",\"call\":\"fizzBuzz(7)[6]\",\"expected\":7},{\"name\":\"Taille du tableau\",\"call\":\"fizzBuzz(10).length\",\"expected\":10}]",
+      "hints": "[\"Vérifiez d'abord le cas FizzBuzz (multiple de 15)\",\"Utilisez l'opérateur modulo %\"]",
+      "points": 250,
+      "time_limit_seconds": 240,
+      "created_at": "2026-04-22T09:05:26.321Z"
+    },
+    {
+      "id": "e7f8e4d4-8017-49f4-a6a5-b98cd31c016b",
+      "technology": "javascript",
+      "difficulty": 3,
+      "title": "Debounce",
+      "description": "## Défi : Implémenter Debounce\n\nImplémentez une fonction `debounce(fn, delay)` qui retourne une version \"debounced\" de la fonction `fn`.\nLa fonction ne s'exécute qu'après `delay` millisecondes sans appel.",
+      "starter_code": "/**\n * Crée une version debounced d'une fonction\n * @param {Function} fn - La fonction à debouncer\n * @param {number} delay - Le délai en millisecondes\n * @returns {Function} La fonction debounced avec méthode .cancel()\n */\nfunction debounce(fn, delay) {\n  // Votre code ici\n  \n}",
+      "solution_code": "function debounce(fn, delay) {\n  let timer = null;\n  function debounced(...args) {\n    clearTimeout(timer);\n    timer = setTimeout(() => { fn.apply(this, args); timer = null; }, delay);\n  }\n  debounced.cancel = function() { clearTimeout(timer); timer = null; };\n  return debounced;\n}",
+      "test_suite": "[{\"name\":\"Retourne une fonction\",\"call\":\"typeof debounce(() => {}, 100)\",\"expected\":\"function\"},{\"name\":\"Possède une méthode cancel\",\"call\":\"typeof debounce(() => {}, 100).cancel\",\"expected\":\"function\"}]",
+      "hints": "[\"Utilisez setTimeout et clearTimeout\",\"Stockez la référence du timer dans une closure\"]",
+      "points": 400,
+      "time_limit_seconds": 360,
+      "created_at": "2026-04-22T09:05:26.323Z"
+    },
+    {
+      "id": "77dbfec4-b31c-4e1a-a624-a3570556bd8f",
+      "technology": "php",
+      "difficulty": 1,
+      "title": "Corriger une fonction PHP buguée",
+      "description": "## Bug à corriger : Calcul de la moyenne\n\nLa fonction suivante contient un bug. Corrigez-la.\n\n```php\nfunction calculerMoyenne($nombres) {\n    $somme = 0;\n    foreach ($nombres as $nombre) {\n        $somme += $nombre;\n    }\n    return $somme / count($nombre); // BUG ICI\n}\n```",
+      "starter_code": "<?php\nfunction calculerMoyenne($nombres) {\n    $somme = 0;\n    foreach ($nombres as $nombre) {\n        $somme += $nombre;\n    }\n    return $somme / count($nombre); // BUG ICI - corrigez cette ligne\n}\n?>",
+      "solution_code": "<?php\nfunction calculerMoyenne($nombres) {\n    $somme = 0;\n    foreach ($nombres as $nombre) {\n        $somme += $nombre;\n    }\n    return $somme / count($nombres);\n}\n?>",
+      "test_suite": "[{\"name\":\"Correction du bug : count($nombres)\",\"type\":\"contains\",\"expected\":\"count($nombres)\"},{\"name\":\"Pas de count($nombre) sans s\",\"type\":\"not_contains\",\"expected\":\"count($nombre);\"},{\"name\":\"La boucle foreach est présente\",\"type\":\"contains\",\"expected\":\"foreach\"}]",
+      "hints": "[\"Regardez attentivement la variable utilisée dans count()\",\"La variable du foreach est $nombre (singulier), mais le tableau est $nombres (pluriel)\"]",
+      "points": 200,
+      "time_limit_seconds": 180,
+      "created_at": "2026-04-22T09:05:26.324Z"
+    },
+    {
+      "id": "10666c1c-bfc6-4757-9494-493139d24233",
+      "technology": "cpp",
+      "difficulty": 2,
+      "title": "Corriger une fuite mémoire",
+      "description": "## Bug à corriger : Fuite mémoire en C++\n\nLe code suivant contient une fuite mémoire. Ajoutez la libération correcte de la mémoire.",
+      "starter_code": "#include <iostream>\nusing namespace std;\n\nclass Node {\npublic:\n    int value;\n    Node* next;\n    Node(int v) : value(v), next(nullptr) {}\n};\n\nvoid addNode(Node* head, int value) {\n    Node* newNode = new Node(value);\n    head->next = newNode;\n}\n\n// Ajoutez une fonction pour libérer la mémoire\n\nint main() {\n    Node* head = new Node(1);\n    addNode(head, 2);\n    addNode(head, 3);\n    // Appelez votre fonction de libération ici\n    return 0;\n}",
+      "solution_code": "#include <iostream>\nusing namespace std;\n\nclass Node {\npublic:\n    int value;\n    Node* next;\n    Node(int v) : value(v), next(nullptr) {}\n};\n\nvoid addNode(Node* head, int value) {\n    Node* newNode = new Node(value);\n    head->next = newNode;\n}\n\nvoid freeList(Node* head) {\n    while (head != nullptr) {\n        Node* temp = head;\n        head = head->next;\n        delete temp;\n    }\n}\n\nint main() {\n    Node* head = new Node(1);\n    addNode(head, 2);\n    addNode(head, 3);\n    freeList(head);\n    return 0;\n}",
+      "test_suite": "[{\"name\":\"Utilisation de delete\",\"type\":\"contains\",\"expected\":\"delete\"},{\"name\":\"Fonction de libération présente\",\"type\":\"regex\",\"expected\":\"void\\\\s+free\",\"flags\":\"i\"},{\"name\":\"Appel de freeList dans main\",\"type\":\"contains\",\"expected\":\"freeList(head)\"}]",
+      "hints": "[\"Créez une fonction qui parcourt la liste chaînée\",\"Utilisez un pointeur temporaire avant de delete\"]",
+      "points": 300,
+      "time_limit_seconds": 300,
+      "created_at": "2026-04-22T09:05:26.325Z"
+    },
+    {
+      "id": "028a6da7-147e-4bd2-8457-112d1c66da59",
+      "technology": "csharp",
+      "difficulty": 2,
+      "title": "Corriger un bug async/await",
+      "description": "## Bug à corriger : Deadlock async/await\n\nLe code suivant provoque un deadlock. Corrigez la méthode `GetData` pour éviter le deadlock.",
+      "starter_code": "using System.Threading.Tasks;\n\npublic class DataService {\n    public async Task<string> GetDataAsync() {\n        await Task.Delay(100);\n        return \"données\";\n    }\n    \n    // Corrigez cette méthode pour éviter le deadlock\n    public string GetData() {\n        return GetDataAsync().Result; // DEADLOCK !\n    }\n}",
+      "solution_code": "using System.Threading.Tasks;\n\npublic class DataService {\n    public async Task<string> GetDataAsync() {\n        await Task.Delay(100);\n        return \"données\";\n    }\n    \n    public async Task<string> GetData() {\n        return await GetDataAsync();\n    }\n}",
+      "test_suite": "[{\"name\":\"Utilisation de async\",\"type\":\"contains\",\"expected\":\"async Task<string> GetData\"},{\"name\":\"Utilisation de await\",\"type\":\"contains\",\"expected\":\"await GetDataAsync()\"},{\"name\":\"Suppression de .Result\",\"type\":\"not_contains\",\"expected\":\".Result\"}]",
+      "hints": "[\"La méthode GetData doit aussi devenir async\",\"Utilisez await au lieu de .Result\"]",
+      "points": 300,
+      "time_limit_seconds": 240,
+      "created_at": "2026-04-22T09:05:26.327Z"
+    },
+    {
+      "id": "49b42262-10f7-4791-9cb6-7bc2277238a4",
+      "technology": "mobile",
+      "difficulty": 2,
+      "title": "Corriger un bug de re-render infini",
+      "description": "## Bug à corriger : Re-render infini React Native\n\nLe composant suivant provoque un re-render infini. Identifiez et corrigez le bug dans le useEffect.",
+      "starter_code": "import React, { useState, useEffect } from 'react';\nimport { Text } from 'react-native';\n\nfunction UserList() {\n  const [users, setUsers] = useState([]);\n  \n  useEffect(() => {\n    fetch('/api/users')\n      .then(res => res.json())\n      .then(data => setUsers(data));\n  }); // BUG ICI - corrigez le useEffect\n  \n  return users.map(u => <Text key={u.id}>{u.name}</Text>);\n}\n\nexport default UserList;",
+      "solution_code": "import React, { useState, useEffect } from 'react';\nimport { Text } from 'react-native';\n\nfunction UserList() {\n  const [users, setUsers] = useState([]);\n  \n  useEffect(() => {\n    fetch('/api/users')\n      .then(res => res.json())\n      .then(data => setUsers(data));\n  }, []);\n  \n  return users.map(u => <Text key={u.id}>{u.name}</Text>);\n}\n\nexport default UserList;",
+      "test_suite": "[{\"name\":\"useEffect avec tableau de dépendances vide\",\"type\":\"regex\",\"expected\":\"useEffect\\\\s*\\\\([^)]+\\\\s*,\\\\s*\\\\[\\\\s*\\\\]\"},{\"name\":\"Présence de useState\",\"type\":\"contains\",\"expected\":\"useState\"},{\"name\":\"Fetch de l'API\",\"type\":\"contains\",\"expected\":\"fetch('/api/users')\"}]",
+      "hints": "[\"useEffect sans tableau de dépendances s'exécute après chaque render\",\"Un tableau vide [] signifie \\\"exécuter une seule fois au montage\\\"\"]",
+      "points": 250,
+      "time_limit_seconds": 240,
+      "created_at": "2026-04-22T09:05:26.328Z"
+    }
+  ],
+  "submissions": [],
+  "session_scores": [],
+  "solo_sessions": [
+    {
+      "id": "434c5f81-a8a6-404d-b66f-fae6f39d5835",
+      "player_name": "Alice",
+      "status": "active",
+      "config": {
+        "maxRounds": 5,
+        "technologies": [
+          "javascript"
+        ],
+        "difficulty": "all",
+        "questionTypes": [
+          "mcq",
+          "code"
+        ]
+      },
+      "current_round": 2,
+      "total_score": 0,
+      "rounds": [
+        {
+          "round_number": 1,
+          "question_id": "b551f9bf-3c6c-4abb-a0e8-5d8997defe9b",
+          "question_type": "mcq",
+          "technology": "javascript",
+          "difficulty": 2,
+          "started_at": "2026-04-22T09:06:17.726Z",
+          "submitted": false,
+          "is_correct": null,
+          "points_earned": 0,
+          "answer": null
+        },
+        {
+          "round_number": 2,
+          "question_id": "99be52c7-1be3-44d5-a1ca-c50c44cacd26",
+          "question_type": "code",
+          "technology": "javascript",
+          "difficulty": 2,
+          "started_at": "2026-04-22T09:06:42.809Z",
+          "submitted": true,
+          "is_correct": false,
+          "points_earned": 0,
+          "answer": "/**\n * Génère le tableau FizzBuzz jusqu'à n\n * @param {number} n - La limite supérieure\n * @returns {Array} Le tableau FizzBuzz\n */\nfunction fizzBuzz(n) {\n  // Votre code ici\n  for (let i = 1; i <= 100; i++) {\n  if (i % 15 === 0) {\n    console.log(\"FizzBuzz\");\n  } else if (i % 3 === 0) {\n    console.log(\"Fizz\");\n  } else if (i % 5 === 0) {\n    console.log(\"Buzz\");\n  } else {\n    console.log(i);\n  }\n}\n}",
+          "tests_passed": 0,
+          "tests_total": 5,
+          "execution_time_ms": 59,
+          "finished_at": "2026-04-22T09:07:43.574Z"
+        }
+      ],
+      "created_at": "2026-04-22T09:06:15.547Z",
+      "finished_at": null
+    },
+    {
+      "id": "10ee0348-79d4-4ec1-a1f5-d26e3c0c12f9",
+      "player_name": "Alice",
+      "status": "finished",
+      "config": {
+        "maxRounds": 5,
+        "technologies": [
+          "javascript"
+        ],
+        "difficulty": "all",
+        "questionTypes": [
+          "mcq"
+        ]
+      },
+      "current_round": 2,
+      "total_score": 0,
+      "rounds": [
+        {
+          "round_number": 1,
+          "question_id": "b551f9bf-3c6c-4abb-a0e8-5d8997defe9b",
+          "question_type": "mcq",
+          "technology": "javascript",
+          "difficulty": 2,
+          "started_at": "2026-04-22T09:08:22.004Z",
+          "submitted": false,
+          "is_correct": null,
+          "points_earned": 0,
+          "answer": null
+        },
+        {
+          "round_number": 2,
+          "question_id": "41598a96-8bf1-46ba-8e33-a3ad7de5787f",
+          "question_type": "mcq",
+          "technology": "javascript",
+          "difficulty": 3,
+          "started_at": "2026-04-22T09:08:33.500Z",
+          "submitted": false,
+          "is_correct": null,
+          "points_earned": 0,
+          "answer": null
+        }
+      ],
+      "created_at": "2026-04-22T09:08:20.479Z",
+      "finished_at": "2026-04-22T10:35:31.968Z"
+    },
+    {
+      "id": "c90a7373-8e17-40a8-9eff-ae5b2aed9b13",
+      "player_name": "Isma",
+      "status": "finished",
+      "config": {
+        "maxRounds": 3,
+        "technologies": [
+          "javascript"
+        ],
+        "difficulty": "easy",
+        "questionTypes": [
+          "mcq"
+        ]
+      },
+      "current_round": 3,
+      "total_score": 100,
+      "rounds": [
+        {
+          "round_number": 1,
+          "question_id": "3b2b2989-04b2-4729-bf61-f2e88b05a43c",
+          "question_type": "mcq",
+          "technology": "javascript",
+          "difficulty": 1,
+          "started_at": "2026-04-22T09:32:26.533Z",
+          "submitted": true,
+          "is_correct": true,
+          "points_earned": 100,
+          "answer": "1",
+          "finished_at": "2026-04-22T09:32:38.645Z"
+        },
+        {
+          "round_number": 2,
+          "question_id": "5431f0be-4872-4e2b-9c36-a16f8b32beef",
+          "question_type": "mcq",
+          "technology": "javascript",
+          "difficulty": 1,
+          "started_at": "2026-04-22T09:32:43.579Z",
+          "submitted": true,
+          "is_correct": false,
+          "points_earned": 0,
+          "answer": "1",
+          "finished_at": "2026-04-22T09:33:03.439Z"
+        },
+        {
+          "round_number": 3,
+          "question_id": "41598a96-8bf1-46ba-8e33-a3ad7de5787f",
+          "question_type": "mcq",
+          "technology": "javascript",
+          "difficulty": 3,
+          "started_at": "2026-04-22T09:33:08.739Z",
+          "submitted": true,
+          "is_correct": false,
+          "points_earned": 0,
+          "answer": "0",
+          "finished_at": "2026-04-22T09:33:14.292Z"
+        }
+      ],
+      "created_at": "2026-04-22T09:32:25.017Z",
+      "finished_at": "2026-04-22T09:33:14.292Z"
+    },
+    {
+      "id": "a0f7c590-d097-4b37-a2da-eb980ee5abbc",
+      "player_name": "Tom",
+      "status": "finished",
+      "config": {
+        "maxRounds": 3,
+        "technologies": [
+          "csharp"
+        ],
+        "difficulty": "all",
+        "questionTypes": [
+          "mcq",
+          "code"
+        ]
+      },
+      "current_round": 3,
+      "total_score": 200,
+      "rounds": [
+        {
+          "round_number": 1,
+          "question_id": "a7e61319-e71e-4d28-9d54-58158268467e",
+          "question_type": "mcq",
+          "technology": "csharp",
+          "difficulty": 2,
+          "started_at": "2026-04-22T10:36:26.291Z",
+          "submitted": true,
+          "is_correct": false,
+          "points_earned": 0,
+          "answer": "2",
+          "finished_at": "2026-04-22T10:36:41.646Z"
+        },
+        {
+          "round_number": 2,
+          "question_id": "028a6da7-147e-4bd2-8457-112d1c66da59",
+          "question_type": "code",
+          "technology": "csharp",
+          "difficulty": 2,
+          "started_at": "2026-04-22T10:36:49.382Z",
+          "submitted": true,
+          "is_correct": false,
+          "points_earned": 200,
+          "answer": "using System.Threading.Tasks;\n\npublic class DataService {\n    public async Task<string> GetDataAsync() {\n        await Task.Delay(100);\n        return \"données\";\n    }\n    \n    // Corrigez cette méthode pour éviter le deadlock\n    public string GetData() {\n        return await GetDataAsync().Result; // DEADLOCK !\n    }\n}",
+          "tests_passed": 2,
+          "tests_total": 3,
+          "execution_time_ms": 0,
+          "finished_at": "2026-04-22T10:38:00.479Z"
+        },
+        {
+          "round_number": 3,
+          "question_id": "4270805a-2154-473b-81ef-4a0d0dbbe3d5",
+          "question_type": "mcq",
+          "technology": "csharp",
+          "difficulty": 1,
+          "started_at": "2026-04-22T10:38:12.297Z",
+          "submitted": true,
+          "is_correct": false,
+          "points_earned": 0,
+          "answer": "0",
+          "finished_at": "2026-04-22T10:38:27.796Z"
+        }
+      ],
+      "created_at": "2026-04-22T10:36:24.605Z",
+      "finished_at": "2026-04-22T10:38:27.796Z"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { initDatabase, getDb } from '../models/database.js';
+import { initDatabase, dbHelpers, getDb } from '../models/database.js';
 import { v4 as uuidv4 } from 'uuid';
 
 const MCQ_QUESTIONS = [
@@ -130,24 +130,44 @@ const DEMO_TEAMS = [
 async function seed() {
   await initDatabase();
   const db = getDb();
+
   console.log('🌱 Démarrage du seed...');
-  db.exec('DELETE FROM submissions; DELETE FROM session_scores; DELETE FROM rounds; DELETE FROM game_sessions; DELETE FROM players; DELETE FROM teams; DELETE FROM mcq_questions; DELETE FROM code_questions;');
+
+  // Réinitialiser les données
+  db.data.submissions = [];
+  db.data.session_scores = [];
+  db.data.rounds = [];
+  db.data.game_sessions = [];
+  db.data.players = [];
+  db.data.teams = [];
+  db.data.mcq_questions = [];
+  db.data.code_questions = [];
+  await db.write();
+
   console.log('👥 Insertion des équipes...');
   for (const team of DEMO_TEAMS) {
     const teamId = uuidv4();
-    db.prepare('INSERT INTO teams (id, name, color) VALUES (?, ?, ?)').run(teamId, team.name, team.color);
+    await dbHelpers.insertTeam({ id: teamId, name: team.name, color: team.color, score: 0, created_at: new Date().toISOString() });
     for (const player of team.players) {
-      db.prepare('INSERT INTO players (id, team_id, name, technology) VALUES (?, ?, ?, ?)').run(uuidv4(), teamId, player.name, player.technology);
+      await dbHelpers.insertPlayer({ id: uuidv4(), team_id: teamId, name: player.name, technology: player.technology, created_at: new Date().toISOString() });
     }
   }
+
   console.log('❓ Insertion des questions MCQ...');
   for (const q of MCQ_QUESTIONS) {
-    db.prepare('INSERT INTO mcq_questions (id, technology, difficulty, title, description, options, correct_answer, explanation, points) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)').run(uuidv4(), q.technology, q.difficulty, q.title, q.description, JSON.stringify(q.options), q.correct_answer, q.explanation, q.points);
+    await dbHelpers.insertMCQ({ id: uuidv4(), ...q, options: JSON.stringify(q.options), created_at: new Date().toISOString() });
   }
+
   console.log('💻 Insertion des questions de code...');
   for (const q of CODE_QUESTIONS) {
-    db.prepare('INSERT INTO code_questions (id, technology, difficulty, title, description, starter_code, solution_code, test_suite, hints, points, time_limit_seconds) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)').run(uuidv4(), q.technology, q.difficulty, q.title, q.description, q.starter_code, q.solution_code, JSON.stringify(q.test_suite), JSON.stringify(q.hints), q.points, q.time_limit_seconds);
+    await dbHelpers.insertCode({
+      id: uuidv4(), ...q,
+      test_suite: JSON.stringify(q.test_suite),
+      hints: JSON.stringify(q.hints),
+      created_at: new Date().toISOString()
+    });
   }
+
   console.log('✅ Seed terminé !');
   console.log('   - ' + DEMO_TEAMS.length + ' équipes créées');
   console.log('   - ' + MCQ_QUESTIONS.length + ' questions MCQ créées');

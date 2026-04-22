@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import jwt from 'jsonwebtoken';
-import { getDb } from '../models/database.js';
+import { dbHelpers } from '../models/database.js';
 import { v4 as uuidv4 } from 'uuid';
 
 const router = Router();
 
-// Connexion admin (mot de passe simple pour la démo)
+// Connexion admin
 router.post('/admin', (req, res) => {
   const { password } = req.body;
   if (password !== (process.env.ADMIN_PASSWORD || 'admin2025')) {
@@ -18,10 +18,9 @@ router.post('/admin', (req, res) => {
 // Connexion d'une équipe
 router.post('/team', (req, res) => {
   const { teamName } = req.body;
-  if (!teamName) return res.status(400).json({ error: 'Nom d\'équipe requis' });
+  if (!teamName) return res.status(400).json({ error: "Nom d'équipe requis" });
 
-  const db = getDb();
-  const team = db.prepare('SELECT * FROM teams WHERE name = ?').get(teamName);
+  const team = dbHelpers.getTeamByName(teamName);
   if (!team) return res.status(404).json({ error: 'Équipe introuvable' });
 
   const token = jwt.sign({ role: 'team', teamId: team.id, teamName: team.name }, process.env.JWT_SECRET, { expiresIn: '8h' });
@@ -33,11 +32,14 @@ router.post('/player', (req, res) => {
   const { playerName, teamId } = req.body;
   if (!playerName || !teamId) return res.status(400).json({ error: 'Nom du joueur et équipe requis' });
 
-  const db = getDb();
-  const player = db.prepare('SELECT * FROM players WHERE name = ? AND team_id = ?').get(playerName, teamId);
+  const player = dbHelpers.getPlayerByNameAndTeam(playerName, teamId);
   if (!player) return res.status(404).json({ error: 'Joueur introuvable' });
 
-  const token = jwt.sign({ role: 'player', playerId: player.id, teamId: player.team_id, technology: player.technology }, process.env.JWT_SECRET, { expiresIn: '8h' });
+  const token = jwt.sign(
+    { role: 'player', playerId: player.id, teamId: player.team_id, technology: player.technology },
+    process.env.JWT_SECRET,
+    { expiresIn: '8h' }
+  );
   res.json({ token, role: 'player', player });
 });
 

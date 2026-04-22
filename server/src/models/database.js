@@ -1,131 +1,143 @@
-import Database from 'better-sqlite3';
+import { Low } from 'lowdb';
+import { JSONFile } from 'lowdb/node';
 import { mkdirSync, existsSync } from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const DB_PATH = process.env.DB_PATH || path.join(__dirname, '../../data/bughunter.db');
+const DB_PATH = process.env.DB_PATH || path.join(__dirname, '../../data/bughunter.json');
 
 let db;
+
+const DEFAULT_DATA = {
+  teams: [],
+  players: [],
+  game_sessions: [],
+  rounds: [],
+  mcq_questions: [],
+  code_questions: [],
+  submissions: [],
+  session_scores: [],
+};
+
+export async function initDatabase() {
+  const dbDir = path.dirname(DB_PATH);
+  if (!existsSync(dbDir)) mkdirSync(dbDir, { recursive: true });
+
+  const adapter = new JSONFile(DB_PATH);
+  db = new Low(adapter, DEFAULT_DATA);
+  await db.read();
+
+  for (const key of Object.keys(DEFAULT_DATA)) {
+    if (!db.data[key]) db.data[key] = [];
+  }
+  await db.write();
+
+  console.log('✅ Base de données initialisée avec succès');
+  return db;
+}
 
 export function getDb() {
   if (!db) throw new Error('Base de données non initialisée');
   return db;
 }
 
-export async function initDatabase() {
-  const dbDir = path.dirname(DB_PATH);
-  if (!existsSync(dbDir)) mkdirSync(dbDir, { recursive: true });
+export const dbHelpers = {
+  getAllTeams: () => db.data.teams,
+  getTeamById: (id) => db.data.teams.find((t) => t.id === id),
+  getTeamByName: (name) => db.data.teams.find((t) => t.name === name),
+  insertTeam: async (team) => { db.data.teams.push(team); await db.write(); },
+  deleteTeam: async (id) => {
+    db.data.teams = db.data.teams.filter((t) => t.id !== id);
+    db.data.players = db.data.players.filter((p) => p.team_id !== id);
+    await db.write();
+  },
 
-  db = new Database(DB_PATH);
-  db.pragma('journal_mode = WAL');
-  db.pragma('foreign_keys = ON');
+  getPlayersByTeam: (teamId) => db.data.players.filter((p) => p.team_id === teamId),
+  getPlayerById: (id) => db.data.players.find((p) => p.id === id),
+  getPlayerByNameAndTeam: (name, teamId) => db.data.players.find((p) => p.name === name && p.team_id === teamId),
+  insertPlayer: async (player) => { db.data.players.push(player); await db.write(); },
 
-  db.exec(`
-    -- Table des équipes
-    CREATE TABLE IF NOT EXISTS teams (
-      id TEXT PRIMARY KEY,
-      name TEXT NOT NULL UNIQUE,
-      color TEXT NOT NULL DEFAULT '#6366f1',
-      score INTEGER NOT NULL DEFAULT 0,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
+  getActiveSession: () => db.data.game_sessions.find((s) => s.status === 'active'),
+  getWaitingSession: () => db.data.game_sessions.find((s) => s.status === 'waiting'),
+  getLatestNonFinishedSession: () => {
+    const sessions = db.data.game_sessions.filter((s) => s.status !== 'finished');
+    return sessions.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))[0] || null;
+  },
+  insertSession: async (session) => { db.data.game_sessions.push(session); await db.write(); },
+  updateSessionStatus: async (id, status, extra = {}) => {
+    const s = db.data.game_sessions.find((s) => s.id === id);
+    if (s) { Object.assign(s, { status, ...extra }); await db.write(); }
+  },
+  updateSessionRound: async (id, roundNumber) => {
+    const s = db.data.game_sessions.find((s) => s.id === id);
+    if (s) { s.current_round = roundNumber; await db.write(); }
+  },
+  finishAllActiveSessions: async () => {
+    db.data.game_sessions.forEach((s) => {
+      if (s.status === 'active' || s.status === 'waiting') {
+        s.status = 'finished';
+        s.finished_at = new Date().toISOString();
+      }
+    });
+    await db.write();
+  },
 
-    -- Table des joueurs (experts par technologie)
-    CREATE TABLE IF NOT EXISTS players (
-      id TEXT PRIMARY KEY,
-      team_id TEXT NOT NULL,
-      name TEXT NOT NULL,
-      technology TEXT NOT NULL CHECK(technology IN ('javascript','php','cpp','csharp','mobile')),
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (team_id) REFERENCES teams(id) ON DELETE CASCADE
-    );
+  getRoundsBySession: (sessionId) =>
+    db.data.rounds.filter((r) => r.session_id === sessionId).sort((a, b) => a.round_number - b.round_number),
+  getLastRoundOfSession: (sessionId) => {
+    const rounds = db.data.rounds.filter((r) => r.session_id === sessionId);
+    return rounds.sort((a, b) => b.round_number - a.round_number)[0] || null;
+  },
+  getRoundById: (id) => db.data.rounds.find((r) => r.id === id),
+  getUsedQuestionIds: (sessionId, questionType) =>
+    db.data.rounds.filter((r) => r.session_id === sessionId && r.question_type === questionType).map((r) => r.question_id),
+  insertRound: async (round) => { db.data.rounds.push(round); await db.write(); },
 
-    -- Table des sessions de jeu
-    CREATE TABLE IF NOT EXISTS game_sessions (
-      id TEXT PRIMARY KEY,
-      status TEXT NOT NULL DEFAULT 'waiting' CHECK(status IN ('waiting','active','finished')),
-      current_round INTEGER NOT NULL DEFAULT 0,
-      max_rounds INTEGER NOT NULL DEFAULT 10,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      started_at DATETIME,
-      finished_at DATETIME
-    );
+  getAllMCQ: () => db.data.mcq_questions,
+  getMCQById: (id) => db.data.mcq_questions.find((q) => q.id === id),
+  getRandomMCQ: (technology, excludeIds = []) => {
+    const pool = db.data.mcq_questions.filter((q) => q.technology === technology && !excludeIds.includes(q.id));
+    const source = pool.length ? pool : db.data.mcq_questions.filter((q) => !excludeIds.includes(q.id));
+    return source.length ? source[Math.floor(Math.random() * source.length)] : null;
+  },
+  insertMCQ: async (q) => { db.data.mcq_questions.push(q); await db.write(); },
 
-    -- Table des manches (rounds)
-    CREATE TABLE IF NOT EXISTS rounds (
-      id TEXT PRIMARY KEY,
-      session_id TEXT NOT NULL,
-      round_number INTEGER NOT NULL,
-      technology TEXT NOT NULL,
-      question_id TEXT NOT NULL,
-      question_type TEXT NOT NULL CHECK(question_type IN ('mcq','code')),
-      started_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      finished_at DATETIME,
-      FOREIGN KEY (session_id) REFERENCES game_sessions(id) ON DELETE CASCADE
-    );
+  getAllCode: () => db.data.code_questions,
+  getCodeById: (id) => db.data.code_questions.find((q) => q.id === id),
+  getRandomCode: (technology, excludeIds = []) => {
+    const pool = db.data.code_questions.filter((q) => q.technology === technology && !excludeIds.includes(q.id));
+    const source = pool.length ? pool : db.data.code_questions.filter((q) => !excludeIds.includes(q.id));
+    return source.length ? source[Math.floor(Math.random() * source.length)] : null;
+  },
+  insertCode: async (q) => { db.data.code_questions.push(q); await db.write(); },
 
-    -- Table des questions QCM
-    CREATE TABLE IF NOT EXISTS mcq_questions (
-      id TEXT PRIMARY KEY,
-      technology TEXT NOT NULL,
-      difficulty INTEGER NOT NULL DEFAULT 1 CHECK(difficulty IN (1,2,3)),
-      title TEXT NOT NULL,
-      description TEXT NOT NULL,
-      options TEXT NOT NULL, -- JSON array de 4 options
-      correct_answer INTEGER NOT NULL CHECK(correct_answer BETWEEN 0 AND 3),
-      explanation TEXT,
-      points INTEGER NOT NULL DEFAULT 100,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
+  getSubmissionByRoundAndTeam: (roundId, teamId) =>
+    db.data.submissions.find((s) => s.round_id === roundId && s.team_id === teamId),
+  getCorrectSubmissionCount: (roundId) =>
+    db.data.submissions.filter((s) => s.round_id === roundId && s.is_correct).length,
+  insertSubmission: async (sub) => { db.data.submissions.push(sub); await db.write(); },
 
-    -- Table des questions de code (IDE + TDD)
-    CREATE TABLE IF NOT EXISTS code_questions (
-      id TEXT PRIMARY KEY,
-      technology TEXT NOT NULL,
-      difficulty INTEGER NOT NULL DEFAULT 2 CHECK(difficulty IN (1,2,3)),
-      title TEXT NOT NULL,
-      description TEXT NOT NULL,
-      starter_code TEXT NOT NULL,   -- Code de départ fourni au joueur
-      solution_code TEXT NOT NULL,  -- Solution de référence (non exposée)
-      test_suite TEXT NOT NULL,     -- Suite de tests TDD (JSON)
-      hints TEXT,                   -- Indices optionnels (JSON array)
-      points INTEGER NOT NULL DEFAULT 300,
-      time_limit_seconds INTEGER NOT NULL DEFAULT 300,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    );
-
-    -- Table des soumissions
-    CREATE TABLE IF NOT EXISTS submissions (
-      id TEXT PRIMARY KEY,
-      round_id TEXT NOT NULL,
-      team_id TEXT NOT NULL,
-      player_id TEXT NOT NULL,
-      question_type TEXT NOT NULL CHECK(question_type IN ('mcq','code')),
-      answer TEXT NOT NULL,          -- Index (MCQ) ou code source (code)
-      is_correct INTEGER NOT NULL DEFAULT 0,
-      tests_passed INTEGER DEFAULT 0,
-      tests_total INTEGER DEFAULT 0,
-      execution_time_ms INTEGER DEFAULT 0,
-      points_earned INTEGER NOT NULL DEFAULT 0,
-      submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (round_id) REFERENCES rounds(id),
-      FOREIGN KEY (team_id) REFERENCES teams(id),
-      FOREIGN KEY (player_id) REFERENCES players(id)
-    );
-
-    -- Table des scores par session
-    CREATE TABLE IF NOT EXISTS session_scores (
-      id TEXT PRIMARY KEY,
-      session_id TEXT NOT NULL,
-      team_id TEXT NOT NULL,
-      score INTEGER NOT NULL DEFAULT 0,
-      FOREIGN KEY (session_id) REFERENCES game_sessions(id),
-      FOREIGN KEY (team_id) REFERENCES teams(id),
-      UNIQUE(session_id, team_id)
-    );
-  `);
-
-  console.log('✅ Base de données initialisée avec succès');
-  return db;
-}
+  getSessionScores: (sessionId) => {
+    const teams = db.data.teams;
+    return teams.map((t) => {
+      const ss = db.data.session_scores.find((s) => s.session_id === sessionId && s.team_id === t.id);
+      return { id: t.id, name: t.name, color: t.color, score: ss?.score || 0 };
+    }).sort((a, b) => b.score - a.score);
+  },
+  initSessionScores: async (sessionId, teamIds) => {
+    for (const teamId of teamIds) {
+      const exists = db.data.session_scores.find((s) => s.session_id === sessionId && s.team_id === teamId);
+      if (!exists) db.data.session_scores.push({ id: `${sessionId}_${teamId}`, session_id: sessionId, team_id: teamId, score: 0 });
+    }
+    await db.write();
+  },
+  addSessionScore: async (sessionId, teamId, points) => {
+    const ss = db.data.session_scores.find((s) => s.session_id === sessionId && s.team_id === teamId);
+    if (ss) { ss.score = (ss.score || 0) + points; await db.write(); }
+    else {
+      db.data.session_scores.push({ id: `${sessionId}_${teamId}`, session_id: sessionId, team_id: teamId, score: points });
+      await db.write();
+    }
+  },
+};

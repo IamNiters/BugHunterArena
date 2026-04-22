@@ -14,6 +14,7 @@ import teamRoutes from './routes/teams.js';
 import gameRoutes from './routes/game.js';
 import questionRoutes from './routes/questions.js';
 import submissionRoutes from './routes/submissions.js';
+import soloRoutes from './routes/solo.js';
 
 const app = express();
 const httpServer = createServer(app);
@@ -46,6 +47,7 @@ app.use('/api/teams', teamRoutes);
 app.use('/api/game', gameRoutes);
 app.use('/api/questions', questionRoutes);
 app.use('/api/submissions', submissionRoutes);
+app.use('/api/solo', soloRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -75,4 +77,4 @@ initDatabase()
     process.exit(1);
   });
 
-export { io };
+// io est géré dans gameSocket.js via getIo()
